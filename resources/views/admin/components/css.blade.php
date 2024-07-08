@@ -14,3 +14,9 @@
  <link rel="stylesheet" href="admindash/assets/css/style.css">
  <!-- End layout styles -->
  <link rel="shortcut icon" href="admindash/assets/images/favicon.png" />
+
+
+ {{-- Toaster js --}}
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
+
