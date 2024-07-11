@@ -12,10 +12,9 @@
        @include('home.components.header') 
        @include('home.components.slider')
     </div>
-       @include('home.components.why')
-       @include('home.components.arrival')
-       @include('home.components.product')
-       @include('home.components.subscribe')
+
+@yield('home_content')
+
        @include('home.components.footer')
        @include('home.components.credit')
        @include('home.components.links')
