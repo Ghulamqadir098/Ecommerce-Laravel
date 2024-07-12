@@ -8,3 +8,6 @@
 <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
 <!-- responsive style -->
 <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
+
+<!-- Toaster js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">

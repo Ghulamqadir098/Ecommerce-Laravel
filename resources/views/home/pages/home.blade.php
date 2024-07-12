@@ -295,9 +295,11 @@
     <div class="box">
        <div class="option_container">
           <div class="options">
-             <a href="" class="option1">
-             Add To Cart
-             </a>
+            <form action="{{route("add_cart",$item->id)}}" method="POST">
+               @csrf
+               <input type="number" name="cart_quantity" value="1" min="1">
+              <input type="submit" class="option1" value="ADD TO CART"> 
+            </form>
              <a href="{{route('product_details',$item->id)}}" class="option2">
              Product Details
              </a>
@@ -311,8 +313,13 @@
             {{$item->title}}
           </h5>
           <h6>
-             {{$item->price}} &#8360;
+             {{$item->price}}$
           </h6>
+       </div>
+       <div>
+         <h6 style="color: #002c3e;font-weight: 600;" >
+           Discount Price: {{$item->discount_price}}$
+         </h6>
        </div>
     </div>
  </div>

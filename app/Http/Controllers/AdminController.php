@@ -153,7 +153,7 @@ public function product_details($id){
 $product= Product::find($id);
 
 
-return view('home.pages.product_details');
+return view('home.pages.product_details',compact('product'));
 
 }
 

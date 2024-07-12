@@ -43,3 +43,19 @@ Route::get('product_edit/{id}',[AdminController::class, 'product_edit'])->name('
 Route::post('update_product/{id}',[AdminController::class, 'update_product'])->name('update_product');
 
 Route::get('product_details/{id}',[AdminController::class,'product_details'])->name('product_details');
+
+
+//Cart routes
+
+
+Route::post('add_cart/{id}',[HomeController::class, 'add_cart'])->name('add_cart');
+
+Route::get('view_cart',[HomeController::class, 'view_cart'])->name('view_cart');
+
+Route::get('remove_item/{id}',[HomeController::class, 'remove_item'])->name('remove_item');
+
+Route::get('cash_order',[HomeController::class, 'cash_order'])->name('cash_order');
+
+Route::get('stripe/{total}',[HomeController::class, 'stripe'])->name('stripe');
+
+Route::post('stripe_payment/{total}',[HomeController::class,'stripePost'])->name('stripe.post');

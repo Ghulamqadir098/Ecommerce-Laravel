@@ -10,7 +10,14 @@
 <body>
     <div class="hero_area">
        @include('home.components.header') 
-       @include('home.components.slider')
+    
+    
+    
+            {{-- Section for slider --}}
+            @section('slider')
+            @include('home.components.slider')
+        @show
+
     </div>
 
 @yield('home_content')
