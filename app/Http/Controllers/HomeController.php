@@ -18,8 +18,6 @@ class HomeController extends Controller
 
 public function index(){
 $products=Product::all();
-
-
 return view('home.pages.home',compact('products'));
 }
 
@@ -84,7 +82,7 @@ $notification = array(
      'alert-type' =>'success'
  );
 
- return redirect()->back()->with($notification);
+ return redirect()->route('/')->with($notification);
 
 }
 else{
@@ -159,7 +157,12 @@ $data->delete();
 
 }
 
-return redirect('/');
+
+$notification = array(
+    'message' => 'Order has been Placed successfully',
+     'alert-type' =>'success'
+ );
+return redirect()->route('/')->with($notification);
 
 }
 
@@ -188,16 +191,35 @@ $user_id=Auth::user()->id;
 $data= Cart::where('user_id','=',$user_id)->get();
 
 foreach($data as $data){
-    $data->delete();
-    $product=Product::find($data->product_id);
-    $product->quantity=$product->quantity - $data->quantity;
 
-    $product->save();
-
+  
+$order=new Order;
+$order->name=$data->name;
+$order->email=$data->email;
+$order->phone=$data->phone;
+$order->address=$data->address;
+$order->user_id=$data->user_id;
+$order->product_title=$data->product_title;
+$order->quantity=$data->quantity;
+$order->price=$data->price;
+$order->image=$data->image;
+$order->product_id=$data->product_id;
+$product=Product::find($data->product_id);
+$product->quantity=$product->quantity - $data->quantity;
+$product->save();
+$order->payment_status='cash Paid in Full';
+$order->delivery_status='processing';
+$order->save();
+$data->delete();
 }
 
 
-        return back();
+$notification = array(
+    'message' => 'Amount Paid in Full',
+     'alert-type' =>'success'
+ );
+
+        return redirect()->route('/')->with($notification);
 
                                     // CArd Details
 //  Name: Test
