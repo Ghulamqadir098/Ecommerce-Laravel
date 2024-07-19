@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -157,4 +158,37 @@ return view('home.pages.product_details',compact('product'));
 
 }
 
+//-------------------------------------------------------------Order Logic-------------------------------------------------------------
+public function view_orders(){
+$order=Order::all();
+
+return view('admin.pages.view_orders',compact('order'));
+
+}
+public function delivered($id){
+
+
+    $order=Order::find($id);
+
+    $order->delivery_status='Delivered';
+    $order->save();
+
+    $notification = array(
+       'message' => 'Order delivered successfully',
+        'alert-type' =>'success'
+    );
+
+    return redirect()->back()->with($notification);
+}
+
+public function processing($id){
+    $order=Order::find($id);
+    $order->delivery_status='processing';
+    $order->save();
+    $notification = array(
+       'message' => 'Order changed to processing successfully',
+        'alert-type' =>'warning'
+    );
+    return redirect()->back()->with($notification);
+}
 }

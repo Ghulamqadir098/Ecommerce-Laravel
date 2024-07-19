@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PdfController;
 
 Route::get('/',[HomeController::class,'index'])->name('/');
 
@@ -59,3 +60,17 @@ Route::get('cash_order',[HomeController::class, 'cash_order'])->name('cash_order
 Route::get('stripe/{total}',[HomeController::class, 'stripe'])->name('stripe');
 
 Route::post('stripe_payment/{total}',[HomeController::class,'stripePost'])->name('stripe.post');
+
+
+// -------------------------------------------Order routes----------------------------------------------------------------
+
+Route::get('view_orders',[AdminController::class, 'view_orders'])->name('view_orders');
+
+// Route::get('order_details/{id}',[AdminController::class, 'order_details'])->name('order_details');
+
+// Route::get('order_status/{id}',[AdminController::class, 'order_status'])->name('order_status');
+
+Route::get('delivered/{id}',[AdminController::class, 'delivered'])->name('delivered');
+Route::get('processing/{id}',[AdminController::class, 'processing'])->name('processing');
+
+Route::get('print_pdf/{id}',[PdfController::class, 'download'])->name('print_pdf')->middleware('auth');
